@@ -1,9 +1,11 @@
 package org.x3codes.volumecalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Shape shape = adapter.getItem(i);
+                assert shape != null;
+                String name = shape.getShapeName();
+
+                if (Objects.equals(name, "Sphere")) {
+                    Intent intent = new Intent(getApplicationContext(), Sphere.class);
+                    startActivity(intent);
+                } else if(Objects.equals(name, "Cube")) {
+                    Intent intent = new Intent(getApplicationContext(), Cube.class);
+                    startActivity(intent);
+                } else if(Objects.equals(name, "Prism")) {
+                    Intent intent = new Intent(getApplicationContext(), Prism.class);
+                    startActivity(intent);
+                } else if(Objects.equals(name, "Cylinder")) {
+                    Intent intent = new Intent(getApplicationContext(), Cylinder.class);
+                    startActivity(intent);
+                }
+
 
             }
         });
